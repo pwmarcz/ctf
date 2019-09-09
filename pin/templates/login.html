@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<body>
+  {% if pin_correct %}
+    <p>PIN correct!</p>
+  {% endif %}
+  {% if pin_incorrect %}
+    <p>PIN incorrect!</p>
+  {% endif %}
+  <form action="." method="get">
+    <label>PIN:
+      <input type="text" name="pin">
+    </label>
+  </form>
+</body>
