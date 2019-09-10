@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<body>
+  <h1>Awesome Bank</h1>
+
+  <p>
+    WARNING: Due to some <b>hacking attempts</b> we changed the PIN to 10-digit.
+    Also, the PIN-checking machine is <b>really slow</b>. Good luck cracking that!
+  </p>
+
+  {% if pin_correct %}
+<pre>
+ ______________________
+< Wow, I am impressed. >
+ ----------------------
+   \
+    \
+        .--.
+       |o_o |
+       |:_/ |
+      //   \ \
+     (|     | )
+    /'\_   _/`\
+    \___)=(___/
+
+</pre>
+  {% endif %}
+  {% if pin_incorrect %}
+    <p>PIN incorrect!</p>
+  {% endif %}
+
+  <form action="." method="get">
+    <label>PIN:
+      <input type="text" name="pin">
+    </label>
+    <button>Submit</button>
+  </form>
+</body>

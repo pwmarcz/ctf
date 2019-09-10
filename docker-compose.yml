@@ -15,3 +15,5 @@ services:
       - "8000:80"
   pin:
     build: pin
+  pin2:
+    build: pin2

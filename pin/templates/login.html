@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <body>
   {% if pin_correct %}
-    <p>PIN correct!</p>
+    <pre>
+ __________________
+< Congratulations! >
+ ------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+    </pre>
   {% endif %}
+
+  <h1>Awesome Bank</h1>
+
+  <p>
+    WARNING: Due to database malfunction, we now require you to login with a 4-digit
+    PIN instead of your username/password.
+  </p>
+
+
   {% if pin_incorrect %}
     <p>PIN incorrect!</p>
   {% endif %}
@@ -10,5 +28,6 @@
     <label>PIN:
       <input type="text" name="pin">
     </label>
+    <button>Submit</button>
   </form>
 </body>
