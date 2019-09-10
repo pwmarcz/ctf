@@ -3,17 +3,15 @@ services:
   main:
     image: nginx
     volumes:
-      - source: ./main/nginx.conf
-        target: /etc/nginx/nginx.conf
-        read_only: true
-        type: bind
-      - source: ./main/html
-        target: /usr/share/nginx/html
-        read_only: true
-        type: bind
+      - './main/nginx.conf:/etc/nginx/nginx.conf:ro'
+      - './main/html:/usr/share/nginx/html:ro'
     ports:
       - "8000:80"
   pin:
-    build: pin
+    build: flask_base/
+    volumes:
+      - './pin:/home/user/app:ro'
   pin2:
-    build: pin2
+    build: flask_base/
+    volumes:
+      - './pin2:/home/user/app:ro'

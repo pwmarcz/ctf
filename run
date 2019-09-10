@@ -1,5 +1,0 @@
-#!/bin/bash -ex
-
-docker build -t flask_base flask_base
-docker-compose build
-docker-compose up
