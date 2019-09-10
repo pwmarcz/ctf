@@ -8,5 +8,5 @@ RUN pip install flask gunicorn
 
 EXPOSE 8000
 
-ADD . .
+COPY . .
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8000", "--access-logfile", "-"]
