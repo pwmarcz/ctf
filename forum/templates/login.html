@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<body>
+  <h1>Forum</h1>
+
+  <p>
+    NOTE: If you do not have a username yet, just enter <tt>guest/guest</tt> as
+    both your username and password.
+  </p>
+
+  {% if incorrect_login %}
+    <p>Incorrect login details!
+  {% endif %}
+  <form action="." method="post">
+    <p>
+      <label>Username:
+        <input type="text" name="username">
+      </label>
+    </p>
+    <p>
+      <label>Password:
+        <input type="password" name="password">
+      </label>
+    </p>
+    <button>Submit</button>
+  </form>
+</body>

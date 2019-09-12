@@ -6,7 +6,7 @@ app = Flask(__name__)
 PIN = '7532'
 
 
-@app.route('/')
+@app.route('/pin/')
 def pin():
     pin = request.args.get('pin')
     if pin:

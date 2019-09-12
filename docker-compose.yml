@@ -15,3 +15,7 @@ services:
     build: flask_base/
     volumes:
       - './pin2:/home/user/app:ro'
+  forum:
+    build: flask_base/
+    volumes:
+      - './forum:/home/user/app:ro'

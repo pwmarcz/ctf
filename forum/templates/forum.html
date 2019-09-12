@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<body>
+  <h1>Forum</h1>
+
+  <p>
+    Logged in as <b>{{ username }}</b> (<a href="{{ url_for('logout') }}">logout</a>)
+  </p>
+
+  <h2>Topics</h2>
+
+  <table border=1>
+    <tr>
+      <th>Username</th>
+      <th>Topic</th>
+      <th>Content</th>
+    </tr>
+    <tr>
+      <td>guest</td>
+      <td>Hello everyone!</td>
+      <td>How do you do?</td>
+    </tr>
+    <tr>
+      <td>hamlet111</td>
+      <td>To be or not to be</td>
+      <td>That is the question...</td>
+    </tr>
+    <tr>
+      <td>admin</td>
+      <td>Top secret (flag info)</td>
+      {% if username == "admin" %}
+        <td>
+          <pre>
+ _______
+< Hello >
+ -------
+        \    ,-^-.
+         \   !oYo!
+          \ /./=\.\______
+               ##        )\/\
+                ||-----w||
+                ||      ||
+
+               Cowth Vader
+          </pre>
+        </td>
+      {% else %}
+        <td>
+          <i>Hidden for non-admin users.</i>
+        </td>
+      {% endif %}
+    </tr>
+</body>

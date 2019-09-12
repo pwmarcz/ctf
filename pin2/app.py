@@ -9,7 +9,7 @@ PIN = '1328061477'
 DELAY = 0.2
 
 
-@app.route('/')
+@app.route('/pin2/')
 def pin():
     pin = request.args.get('pin')
     if pin:
