@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<body>
-  <h1>Forum</h1>
-
-  <p>
-    Logged in as <b>{{ username }}</b> (<a href="{{ url_for('logout') }}">logout</a>)
-  </p>
-
+{% extends "base.html" %}
+{% block title %}Forum{% endblock %}
+{% block header %}
+  <nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand">Forum</span>
+    <span class="navbar-text light">
+      Logged in as <b>{{ username }}</b> (<a href="{{ url_for('logout') }}">logout</a>)
+    </span>
+  </nav>
+{% endblock %}
+{% block content %}
   <h2>Topics</h2>
 
-  <table border=1>
+  <table class="table">
     <tr>
       <th>Username</th>
       <th>Topic</th>
@@ -49,4 +52,5 @@
         </td>
       {% endif %}
     </tr>
-</body>
+  </table>
+{% endblock %}
