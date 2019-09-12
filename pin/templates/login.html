@@ -1,7 +1,9 @@
-<!DOCTYPE html>
-<body>
+{% extends "base.html" %}
+{% block title %}Awesome Bank{% endblock %}
+{% block content %}
   {% if pin_correct %}
-    <pre>
+    <div class="alert alert-primary">
+      <pre>
  __________________
 < Congratulations! >
  ------------------
@@ -10,10 +12,9 @@
             (__)\       )\/\
                 ||----w |
                 ||     ||
-    </pre>
+      </pre>
+    </div>
   {% endif %}
-
-  <h1>Awesome Bank</h1>
 
   <p>
     WARNING: Due to database malfunction, we now require you to login with a 4-digit
@@ -22,12 +23,12 @@
 
 
   {% if pin_incorrect %}
-    <p>PIN incorrect!</p>
+    <div class="alert alert-danger">PIN incorrect!</div>
   {% endif %}
   <form action="." method="get">
     <label>PIN:
       <input type="text" name="pin">
     </label>
-    <button>Submit</button>
+    <button class="btn btn-primary">Submit</button>
   </form>
-</body>
+{% endblock %}

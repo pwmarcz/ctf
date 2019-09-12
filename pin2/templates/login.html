@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<body>
-  <h1>Awesome Bank</h1>
-
-  <p>
-    WARNING: Due to some <b>hacking attempts</b> we changed the PIN to 10-digit.
-    Also, the PIN-checking machine is <b>really slow</b>. Good luck cracking that!
-  </p>
-
+{% extends "base.html" %}
+{% block title %}Awesome Bank{% endblock %}
+{% block content %}
   {% if pin_correct %}
-<pre>
+    <div class="alert alert-primary">
+      <pre>
  ______________________
 < Wow, I am impressed. >
  ----------------------
@@ -22,16 +17,23 @@
     /'\_   _/`\
     \___)=(___/
 
-</pre>
+      </pre>
+    </div>
   {% endif %}
+
+  <p>
+    WARNING: Due to some <b>hacking attempts</b> we changed the PIN to 10-digit.
+    Also, the PIN-checking machine is <b>really slow</b>. Good luck cracking that!
+  </p>
+
   {% if pin_incorrect %}
-    <p>PIN incorrect!</p>
+    <div class="alert alert-danger">PIN incorrect!</div>
   {% endif %}
 
   <form action="." method="get">
     <label>PIN:
       <input type="text" name="pin">
     </label>
-    <button>Submit</button>
+    <button class="btn btn-primary">Submit</button>
   </form>
-</body>
+{% endblock %}
