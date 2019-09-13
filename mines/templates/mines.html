@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Minesweeper{% endblock %}
+{% block content %}
+  <style>
+    .board {
+      font-size: 0px;
+    }
+
+    .cell {
+      font-size: 18px;
+      display: inline-block;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #888;
+    }
+
+    .cell.label {
+      background: #aaa;
+      border-top-color: #aaa;
+      border-left-color: #aaa;
+    }
+
+    .cell.unknown, .cell.bomb {
+      background: #ccc;
+      border-top-color: #eee;
+      border-left-color: #eee;
+      border-right-color: #999;
+      border-bottom-color: #999;
+    }
+
+    a .cell.unknown:hover {
+      background: #bbb;
+    }
+
+    .buttons {
+      margin-top: 1em;
+    }
+  </style>
+
+  {% if game['state'] == 'dead' %}
+    <div class="alert alert-danger">
+      You lose!
+    </div>
+  {% elif game['state'] == 'win' %}
+    <div class="alert alert-success">
+      You win!
+    </div>
+  {% endif %}
+
+  <div class="card">
+    <div class="card-body">
+      <div class="board">
+        {% for y in range_y %}
+          <div class="board-row">
+            {% for x in range_x %}
+              {% set label = game['labels'][y][x] %}
+              {% set visible = game['visible'][y][x] %}
+
+              {% if game['state'] == 'dead' and game['mines'][y][x] %}
+                <div class="cell bomb">&#10006;</div>
+              {% elif game['state'] == 'win' and game['mines'][y][x] %}
+                <div class="cell bomb">&#11044;</div>
+              {% elif visible and label > 0 %}
+                <div class="cell label">{{ label }}</div>
+              {% elif visible and label == 0 %}
+                <div class="cell label">&nbsp;</div>
+              {% elif not visible and game['state'] == 'playing' %}
+                <a href="{{ url_for('reveal', y=y, x=x) }}">
+                  <div class="cell unknown">&nbsp;</div>
+                </a>
+              {% else %}
+                <div class="cell unknown">&nbsp;</div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="buttons">
+        <a class="btn btn-primary" href="{{ url_for('new_game') }}">New game</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
