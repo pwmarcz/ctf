@@ -19,10 +19,9 @@ def guess_type(path):
 
 @app.route('/gallery/')
 def gallery(path=None):
-    path = request.args.get('path')
-    if not path:
-        path = '.'
+    path = request.args.get('path', '')
 
+    path = path.lstrip('/')
     full_path = os.path.join(os.path.dirname(__file__), 'photos', path)
 
     if os.path.isfile(full_path):
@@ -32,7 +31,7 @@ def gallery(path=None):
 
     if os.path.isdir(full_path):
         files = []
-        if path != '.':
+        if path:
             up_path = path.rpartition('/')[0]
             files.append({
                 'name': '<up>',
