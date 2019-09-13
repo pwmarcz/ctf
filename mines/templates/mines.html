@@ -36,7 +36,15 @@
     .buttons {
       margin-top: 1em;
     }
+
+    h2 {
+      margin-top: 1em;
+    }
   </style>
+
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-primary">{{ message }}</div>
+  {% endfor %}
 
   {% if game['state'] == 'dead' %}
     <div class="alert alert-danger">
@@ -81,4 +89,22 @@
       </div>
     </div>
   </div>
+
+  <h2>Save</h2>
+
+  <p>Save your game by copying the below text!</p>
+
+  <input onClick="this.select();" class="w-100" type="text" readonly value="{{ game_base64 }}">
+
+  <h2>Load</h2>
+
+  <p>Paste the game here to load it.</p>
+
+  <p><b>Do not modify the saved game.</b> The game is encoded with Base64 and
+    you will probably break it if you change anything.</p>
+
+  <form action="{{ url_for('load') }}" method="post">
+    <input class="w-100" type="text" name="game_base64" value="" required>
+    <p><input type="submit" class="btn btn-primary" value="Load"></p>
+  </form>
 {% endblock %}
