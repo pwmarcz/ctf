@@ -40,7 +40,7 @@ def gallery(path=None):
                 'type': 'directory',
                 'url': url_for('gallery') + '?path=' + up_path,
             })
-        for fname in os.listdir(full_path):
+        for fname in sorted(os.listdir(full_path)):
             path_fname = os.path.join(path, fname)
             full_path_fname = os.path.join(full_path, fname)
             files.append({
