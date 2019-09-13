@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+  <p>
+    Welcome to my gallery. You can find some animal photos here.
+  </p>
+  <p>
+    I wrote the file browser myself.
+  </p>
+  <h2>{{ path }}</h2>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th></th>
+    </tr>
+    {% for file in files %}
+      <tr>
+        <td><a href="{{ file['url'] }}">{{ file['name'] }}</a></td>
+        <td>{{ file['type'] }}</td>
+        <td>
+          {% if file['type'] == 'image' %}
+            <img src="{{ file['url'] }}">
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
