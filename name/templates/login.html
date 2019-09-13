@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Awesome Bank{% endblock %}
+{% block content %}
+  {% if login_correct %}
+    <div class="alert alert-primary">
+      <pre>
+ __________________
+< Congratulations! >
+ ------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+      </pre>
+    </div>
+  {% endif %}
+
+  <ul>
+    <li>Please enter your full name (first/last name) and password.</li>
+    <li>
+      <b>Do not use accented characters</b> as they might break the system.
+      (We are still debugging the issue, so if you see a scary-looking error page, just click "Back").
+    </li>
+  </ul>
+
+
+
+  {% if login_incorrect %}
+    <div class="alert alert-danger">Incorrect login details!</div>
+  {% endif %}
+  <form action="." method="post">
+    <div class="form-group">
+      <label>Full name:
+        <input class="form-control" type="text" name="username" pattern="[a-zA-Z ]+">
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Password:
+        <input class="form-control" type="password" name="password">
+      </label>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
