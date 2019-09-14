@@ -82,13 +82,13 @@ def mines_v2():
     return mines(v2=True)
 
 
-@app.route('/mines/new/')
+@app.route('/mines/new/', methods=['POST'])
 def new_game():
     session['game'] = make_new_game()
     return 'OK'
 
 
-@app.route('/mines/reveal/<int:y>/<int:x>')
+@app.route('/mines/reveal/<int:y>/<int:x>/', methods=['POST'])
 def reveal(y, x):
     game = session['game']
     if y < 0 or y >= HEIGHT or x < 0 or x >= WIDTH:

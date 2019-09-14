@@ -66,11 +66,11 @@
 
   <script>
     function newGame() {
-      fetch('/mines/new/').then(() => location.reload());
+      fetch('/mines/new/', {method: 'POST'}).then(() => location.reload());
     }
 
     function reveal(y, x) {
-      fetch('/mines/reveal/' + y + '/' + x).then(() => location.reload());
+      fetch(`/mines/reveal/${y}/${x}/`, {method: 'POST'}).then(() => location.reload());
     }
   </script>
 
