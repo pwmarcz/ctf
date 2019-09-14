@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <p>
+    NOTE: If you do not have a username yet, just enter <tt>guest/guest</tt> as
+    both your username and password.
+  </p>
+
+  {% if incorrect_login %}
+    <div class="alert alert-danger">Incorrect login details!</div>
+  {% endif %}
+  <form action="." method="post">
+    <div class="form-group">
+      <label>Username:
+        <input class="form-control" type="text" name="username">
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Password:
+        <input class="form-control" type="password" name="password">
+      </label>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

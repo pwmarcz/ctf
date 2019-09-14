@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Forum{% endblock %}
+{% block content %}
+  <h2>Posts</h2>
+
+  <div class="alert alert-danger">
+    Login is temporarily disabled.
+  </div>
+
+  {% if user %}
+    <div class="alert alert-info">
+      <p>Showing posts by <b>{{ user }} </b>.</p>
+      <p><a class="btn btn-info" href="{{ url_for('posts') }}">Show all posts</a></p>
+    </div>
+  {% endif %}
+  {% for post in posts %}
+    <div class="card mb-3">
+      <h5 class="card-header">
+        {{ post['topic'] }}
+        <small><a href="{{ url_for('posts') }}?user={{ post['user'] }}">{{ post['user'] }}</a></small>
+      </h5>
+      <div class="card-body">
+        <p class="card-text">{{ post['content']|safe }}</p>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

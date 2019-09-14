@@ -42,3 +42,8 @@ services:
     volumes:
       - './base_templates/base.html:/home/user/app/templates/base.html:ro'
       - './mines:/home/user/app:ro'
+  forum2:
+    build: flask_base/
+    volumes:
+      - './base_templates/base.html:/home/user/app/templates/base.html:ro'
+      - './forum2:/home/user/app:ro'
