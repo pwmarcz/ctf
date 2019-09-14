@@ -4,7 +4,7 @@ USER user
 WORKDIR /home/user
 RUN python -m venv env/
 ENV PATH="/home/user/env/bin:$PATH"
-RUN pip install flask gunicorn pyyaml
+RUN pip install flask gunicorn pyyaml==3.13
 
 COPY flag.txt /home/user/flag.txt
 
