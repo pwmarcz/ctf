@@ -54,7 +54,7 @@
       const headerElement = document.querySelector(`#card-${uuid} .card-header`);
       contentElement.classList.remove('d-none');
       headerElement.classList.remove('note-collapsed');
-      headerElement.onClick = null;
+      headerElement.onclick = null;
 
       fetch(`/notes/${uuid}/`)
         .then(r => r.json())
