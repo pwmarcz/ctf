@@ -3,7 +3,7 @@ import time
 
 app = Flask(__name__)
 
-PIN = '7532'
+PIN = '753'
 
 
 @app.route('/pin/')
