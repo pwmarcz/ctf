@@ -29,6 +29,10 @@
       border-bottom-color: #999;
     }
 
+    .cell.clickable {
+      cursor: pointer;
+    }
+
     a .cell.unknown:hover {
       background: #bbb;
     }
@@ -41,6 +45,10 @@
       margin-top: 1em;
     }
   </style>
+
+  {% if v2 %}
+    <div class="alert alert-success">Version 2, with improved save system!</div>
+  {% endif %}
 
   {% for message in get_flashed_messages() %}
     <div class="alert alert-primary">{{ message }}</div>
@@ -55,6 +63,16 @@
       You win!
     </div>
   {% endif %}
+
+  <script>
+    function newGame() {
+      fetch('/mines/new/').then(() => location.reload());
+    }
+
+    function reveal(y, x) {
+      fetch('/mines/reveal/' + y + '/' + x).then(() => location.reload());
+    }
+  </script>
 
   <div class="card">
     <div class="card-body">
@@ -74,9 +92,7 @@
               {% elif visible and label == 0 %}
                 <div class="cell label">&nbsp;</div>
               {% elif not visible and game['state'] == 'playing' %}
-                <a href="{{ url_for('reveal', y=y, x=x) }}">
-                  <div class="cell unknown">&nbsp;</div>
-                </a>
+                <div class="cell clickable unknown" onClick="reveal({{ y }}, {{ x }})">&nbsp;</div>
               {% else %}
                 <div class="cell unknown">&nbsp;</div>
               {% endif %}
@@ -85,7 +101,7 @@
         {% endfor %}
       </div>
       <div class="buttons">
-        <a class="btn btn-primary" href="{{ url_for('new_game') }}">New game</a>
+        <button class="btn btn-primary" onClick="newGame()">New game</button>
       </div>
     </div>
   </div>
@@ -103,7 +119,11 @@
   <p><b>Do not modify the saved game.</b> The game is encoded with Base64 and
     you will probably break it if you change anything.</p>
 
-  <form action="{{ url_for('load') }}" method="post">
+  {% if v2 %}
+    <p>NEW: Sorry about the problems with previous scheme. I have switched to a much safer PyYAML library.</p>
+  {% endif %}
+
+  <form action="{{ url_for('load_v2' if v2 else 'load') }}" method="post">
     <input class="w-100" type="text" name="game_base64" value="" required>
     <p><input type="submit" class="btn btn-primary" value="Load"></p>
   </form>

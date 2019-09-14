@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, Response, redirect, url_for, flash
 import random
 import base64
+import yaml
 
 
 app = Flask(__name__)
@@ -11,6 +12,10 @@ app.secret_key = 'minesweeper!'
 WIDTH = 8
 HEIGHT = 8
 MINES = 10
+
+
+def main_url(v2):
+    return url_for('mines_v2' if v2 else 'mines')
 
 
 def array2d(val):
@@ -46,7 +51,7 @@ def make_labels(mines):
 
 
 @app.route('/mines/')
-def mines():
+def mines(v2=False):
     if 'game' in session:
         game = session['game']
         new_game = False
@@ -61,20 +66,26 @@ def mines():
             game=game,
             range_y=range(HEIGHT),
             range_x=range(WIDTH),
-            game_base64=serialize(game),
+            game_base64=serialize_v2(game) if v2 else serialize(game),
+            v2=v2,
         )
     except Exception as e:
         if new_game:
             raise
         flash(f'Something went wrong: {e!r}. Resetting game.')
         del session['game']
-        return redirect(url_for('mines'))
+        return redirect(main_url(v2))
+
+
+@app.route('/mines/v2/')
+def mines_v2():
+    return mines(v2=True)
 
 
 @app.route('/mines/new/')
 def new_game():
     session['game'] = make_new_game()
-    return redirect(url_for('mines'))
+    return 'OK'
 
 
 @app.route('/mines/reveal/<int:y>/<int:x>')
@@ -92,19 +103,24 @@ def reveal(y, x):
             game['state'] = 'win'
 
     session['game'] = game
-    return redirect(url_for('mines'))
+    return 'OK'
 
 
 @app.route('/mines/load/', methods=['POST'])
-def load():
+def load(v2=False):
     try:
         game_base64 = request.form.get('game_base64')
-        message, game = deserialize(game_base64)
+        message, game = deserialize_v2(game_base64) if v2 else deserialize(game_base64)
         session['game'] = game
         flash(message)
     except Exception as e:
         flash(f'Error loading game: {e!r}')
-    return redirect(url_for('mines'))
+    return redirect(main_url(v2))
+
+
+@app.route('/mines/v2/load/', methods=['POST'])
+def load_v2():
+    return load(v2=True)
 
 
 def do_reveal(game, y, x):
@@ -132,6 +148,17 @@ def serialize(game):
     return base64.b64encode(r.encode('ascii')).decode('ascii')
 
 
+def serialize_v2(game):
+    message = 'Successfully loaded!'
+    r = yaml.dump([message, game])
+    return base64.b64encode(r.encode('ascii')).decode('ascii')
+
+
 def deserialize(game_base64):
     r = base64.b64decode(game_base64)
     return eval(r)
+
+
+def deserialize_v2(game_base64):
+    r = base64.b64decode(game_base64)
+    return yaml.load(r)
