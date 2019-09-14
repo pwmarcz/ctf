@@ -14,14 +14,14 @@ def posts():
     with connect() as conn:
         user = request.args.get('user')
 
-        c = conn.cursor()
+        query = 'SELECT * FROM posts WHERE deleted = 0'
         if user:
-            c.execute(f"SELECT * FROM posts WHERE deleted = 0 AND user = '{user}'")
-        else:
-            c.execute('SELECT * FROM posts WHERE deleted = 0')
+            query += f" AND user='{user}'"
+
+        c = conn.cursor()
+        c.execute(query)
 
         posts = [dict(zip(POST_COLUMNS, p)) for p in c.fetchall()]
-        print(posts)
         return render_template('forum.html', posts=posts, user=user)
 
 
