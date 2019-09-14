@@ -120,7 +120,7 @@
     you will probably break it if you change anything.</p>
 
   {% if v2 %}
-    <p>NEW: Sorry about the problems with previous scheme. I have switched to a much safer PyYAML library.</p>
+    <p>NEW: Sorry about the problems with previous scheme. I have switched to a much safer PyYAML 3.13 library.</p>
   {% endif %}
 
   <form action="{{ url_for('load_v2' if v2 else 'load') }}" method="post">
