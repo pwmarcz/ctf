@@ -51,7 +51,7 @@
   {% endif %}
 
   {% for message in get_flashed_messages() %}
-    <div class="alert alert-primary">{{ message }}</div>
+    <div class="alert alert-primary"><pre class="mb-0">{{ message }}</pre></div>
   {% endfor %}
 
   {% if game['state'] == 'dead' %}
