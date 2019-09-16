@@ -1,49 +1,64 @@
 <!DOCTYPE html>
+<html class="h-100">
 <head>
   <title>Challenges</title>
+  <link rel="icon" href="favicon-16.png">
+  <link rel="icon" href="favicon-32.png">
+  <link rel="icon" href="favicon-96.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-  <div class="container">
-    <h1>Challenges</h1>
-    <table class="table table-sm">
-      <tbody>
-        <tr>
-          <td><a href="/pin/">pin</a></td>
-        </tr>
-        <tr>
-          <td><a href="/pin2/">pin2</a></td>
-        </tr>
-        <tr>
-          <td><a href="/forum/">forum</a></td>
-        </tr>
-        <tr>
-          <td><a href="/gallery/">gallery</a></td>
-        </tr>
-        <tr>
-          <td><a href="/name/">name</a></td>
-        </tr>
-        <tr>
-          <td><a href="/mines/">mines</a></td>
-        </tr>
-        <tr>
-          <td><a href="/forum2/">forum2</a></td>
-        </tr>
-        <tr>
-          <td><a href="/mines/v2/">mines v2</a></td>
-        </tr>
-        <tr>
-          <td><a href="/notes/">notes</a></td>
-        </tr>
-      </tbody>
-    </table>
-    <h2>What's the objective?</h2>
-    <p>Capture the Flag!</p>
-    <p>Usually the "flag" is obvious. You have to bypass whatever security the application has.</p>
-    <p>If by any chance you get access to the host filesystem, look for <tt>/home/user/flag.txt</tt> file.</p>
+<body class="d-flex flex-column h-100">
+  <main class="flex-shrink-0">
+    <div class="container">
+      <h1>Challenges</h1>
+      <table class="table table-sm">
+        <tbody>
+          <tr>
+            <td><a href="/pin/">pin</a></td>
+          </tr>
+          <tr>
+            <td><a href="/pin2/">pin2</a></td>
+          </tr>
+          <tr>
+            <td><a href="/forum/">forum</a></td>
+          </tr>
+          <tr>
+            <td><a href="/gallery/">gallery</a></td>
+          </tr>
+          <tr>
+            <td><a href="/name/">name</a></td>
+          </tr>
+          <tr>
+            <td><a href="/mines/">mines</a></td>
+          </tr>
+          <tr>
+            <td><a href="/forum2/">forum2</a></td>
+          </tr>
+          <tr>
+            <td><a href="/mines/v2/">mines v2</a></td>
+          </tr>
+          <tr>
+            <td><a href="/notes/">notes</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>What's the objective?</h2>
+      <p>Capture the Flag!</p>
+      <p>Usually the "flag" is obvious. You have to bypass whatever security the application has.</p>
+      <p>If by any chance you get access to the host filesystem, look for <tt>/home/user/flag.txt</tt> file.</p>
 
-    <h2>Need a hint?</h2>
-    <p>Look to <a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">OWASP Top 10</a> for inspiration.</p>
-  </div>
+      <h2>Need a hint?</h2>
+      <p>Look to <a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">OWASP Top 10</a> for inspiration.</p>
+    </div>
+
+
+  </main>
+  <footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
+    <div class="container">
+      <small class="text-muted">
+        Favicon image by <a href="https://thenounproject.com/petervandriel/collection/cyber-crime-or-threats/?i=870666">Peter van Driel</a>
+      </small>
+    </div>
+  </footer>
 </body>
