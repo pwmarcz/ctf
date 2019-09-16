@@ -110,9 +110,11 @@ def reveal(y, x):
 def load(v2=False):
     try:
         game_base64 = request.form.get('game_base64')
-        message, game = deserialize_v2(game_base64) if v2 else deserialize(game_base64)
-        session['game'] = game
-        flash(message)
+        if v2:
+            message, session['game'] = deserialize_v2(game_base64)
+            flash(message)
+        else:
+            session['game'] = deserialize(game_base64)
     except Exception as e:
         flash(f'Error loading game: {e!r}')
     return redirect(main_url(v2))
@@ -143,8 +145,14 @@ def around(y, x):
 
 
 def serialize(game):
-    message = 'Successfully loaded!'
-    r = repr(message) + ',' + repr(game).replace(' ', '')
+    def compact(x):
+        return repr(x).replace(' ', '')
+    r = f'''\
+game['mines'] = {compact(game['mines'])}
+game['labels'] = {compact(game['labels'])}
+game['visible'] = {compact(game['visible'])}
+game['state'] = {repr(game['state'])}
+flash('Successfully loaded!')'''
     return base64.b64encode(r.encode('ascii')).decode('ascii')
 
 
@@ -156,7 +164,9 @@ def serialize_v2(game):
 
 def deserialize(game_base64):
     r = base64.b64decode(game_base64)
-    return eval(r)
+    game = {}
+    exec(r)
+    return game
 
 
 def deserialize_v2(game_base64):
