@@ -12,7 +12,7 @@ PASSWORDS = {'Harry Smith': 'xZ6YUr4solKIELMI9GBl',
 def login():
     if request.method == 'POST':
         username = request.form.get('username').encode('ascii').decode()
-        password = request.form.get('password').encode('ascii').decode()
+        password = request.form.get('password')
         if PASSWORDS.get(username) == password:
             return render_template('login.html', login_correct=True)
         return render_template('login.html', login_incorrect=True)
