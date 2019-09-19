@@ -38,7 +38,7 @@ To add a challenge called `foo`:
   * `main/nginx.conf` (proxy)
   * `main/html/index.html` (link from main page)
 
-You can see that the `base.html` file is shared, and mounter in all containers.
+You can see that the `base.html` file is shared, and mounted in all containers.
 
 ## License
 
