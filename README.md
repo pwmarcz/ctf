@@ -2,6 +2,10 @@
 
 These are a few simple CTF challenges.
 
+## Spoilers
+
+You can find the summary in [spoilers.md](spoilers.md). There is also a list of vulnerabilities which might be helpful if teaching a workshop.
+
 ## Running
 
 Install Docker: https://docs.docker.com/install/
